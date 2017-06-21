@@ -3,26 +3,21 @@
   var {MongoClient, ObjectID} = require('mongodb');
 
   MongoClient.connect('mongodb://localhost:27017/TodoApp', function (err,db) {
-
   if(err){
     return console.log("Unable to connect to MongoDB server");
   }
-
   console.log("Connected to MongoDB server");
 
-  db.collection('Users').find({
+  //deleteMany
+db.collection('Todos').findOneAndDelete({text:'Walk the Dog'}).then((result)=>{
+  console.log(result);
+});
 
-    name:'Sam'
+  //deleteOne
 
-  }).toArray().then(
-  (docs)=> {
-    console.log("Todos");
-    console.log(JSON.stringify(docs,undefined,2));
+  //findOneAndDelete
 
-  }, (err)=> {
-    console.log("Error");
-  }
-  );
+
 
 
 
